@@ -1,0 +1,297 @@
+﻿<ul class="nav nav-list">
+    <li class="@Html.IsActive("Dashboard", "Index")">
+        <a href=" @Url.Action("Index", "Dashboard")">
+            <i class="menu-icon fa fa-tachometer"></i>
+            <span class="menu-text"> Dashboard </span>
+        </a>
+
+        <b class="arrow"></b>
+    </li>
+
+    @if (this.Session["Approver_id"].ToString() == "LeaveApprover")
+    {
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-list"></i>
+                <span class="menu-text"> Approval entries </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="@Url.Action("Index", "ApprovalEntries", new { status = "pending" })">
+                        <i class="menu-icon fa fa-hourglass orange"></i>
+                        Pending
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="@Url.Action("Index", "ApprovalEntries", new { status = "approved" })">
+                        <i class="menu-icon fa fa-check green"></i>
+                        Approved
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <a href="@Url.Action("Index", "ApprovalEntries", new { status = "rejected" })">
+                        <i class="menu-icon fa fa-times red"></i>
+                        Rejected
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+    }
+
+    <li class="@Html.IsParentActive("Leaves", "Index")">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-desktop"></i>
+            <span class="menu-text">
+                Leaves
+            </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+
+            <li class="@Html.IsActive("Leaves", "Create")">
+                <a href="@Url.Action("Create", "Leaves")">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Apply New
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="@Html.IsParent2Active("Leaves", "List")">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i>
+
+                    My Applications
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <b class="arrow"></b>
+
+                <ul class="submenu">
+                    <li class="@Html.IsLastChildActive("Leaves", "List", "open")">
+                        <a href="@Url.Action("Index", "Leaves", new { status = "open" })">
+                            <i class="menu-icon fa fa-folder-open grey"></i>
+                            Open
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="@Html.IsLastChildActive("Leaves", "List", "pending")">
+                        <a href="@Url.Action("Index", "Leaves", new { status = "pending" })">
+                            <i class="menu-icon fa fa-hourglass orange"></i>
+                            Pending
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="@Html.IsLastChildActive("Leaves", "List", "approved")">
+                        <a href="@Url.Action("Index", "Leaves", new { status = "approved" })">
+                            <i class="menu-icon fa fa-check green"></i>
+                            Approved
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="@Html.IsLastChildActive("Leaves", "List", "rejected")">
+                        <a href="@Url.Action("Index", "Leaves", new { status = "rejected" })">
+                            <i class="menu-icon fa fa-times red"></i>
+                            Rejected
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+
+    @if (this.Session["role_id"].ToString() == "Admin")
+    {
+
+
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-building"></i>
+                <span class="menu-text"> Departments </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="@Url.Action("Create", "Departments")">
+                        <i class="menu-icon fa fa-building orange"></i>
+                        Create
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="@Url.Action("Index", "Departments")">
+                        <i class="menu-icon fa fa-list green"></i>
+                        View Departments
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-users"></i>
+                <span class="menu-text"> Employees </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="@Url.Action("Create", "Employees")">
+                        <i class="menu-icon fa fa-user orange"></i>
+                        Add employees
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <a href="@Url.Action("Index", "Employees")">
+                        <i class="menu-icon fa fa-users orange"></i>
+                        View employees
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-cogs"></i>
+                <span class="menu-text"> Approval users </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                    <a href="@Url.Action("CreateApprover", "Approvers")">
+                        <i class="menu-icon fa fa-users red"></i>
+                        Create Approval User
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="@Url.Action("Index", "Approvers")">
+                        <i class="menu-icon fa fa-users red"></i>
+                        Approval Users
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-cogs"></i>
+                <span class="menu-text"> Holiday </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                    <a href="@Url.Action("Holidays", "Settings")">
+                        <i class="menu-icon fa fa-cogs green"></i>
+                        View Holidays
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        //leave types
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-cogs"></i>
+                <span class="menu-text"> Leave Types </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                    <a href="@Url.Action("Create", "LeaveTypes")">
+                        <i class="menu-icon fa fa-users red"></i>
+                        Create Leave Type
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="@Url.Action("index", "LeaveTypes")">
+                        <i class="menu-icon fa fa-users red"></i>
+                        View Leave Types
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        <li class="@Html.IsActive("Settings", "AppSettings")">
+            <a href="@Url.Action("AppSettings", "Settings")">
+                <i class="menu-icon fa fa-cog"></i>
+                <span class="menu-text"> Settings </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+    }
+
+    <li class="@Html.IsActive("Profile", "Index")">
+        <a href="@Url.Action("Index", "Profile")">
+            <i class="menu-icon fa fa-user"></i>
+            <span class="menu-text"> Profile </span>
+        </a>
+
+        <b class="arrow"></b>
+    </li>
+
+
+</ul>
